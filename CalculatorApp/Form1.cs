@@ -15,12 +15,14 @@ namespace CalculatorApp
         double enterfirstvalue, entersecondvalue;
         string op;
         public Form1()
+
+
         {
             InitializeComponent();
         }
 
-        // This line should take care of the numeric (all the numbers)
-        private void EnterNumbers(object sender, EventArgs e)
+            // This line should take care of the numeric (all the numbers)
+            private void EnterNumbers(object sender, EventArgs e)
         {
             Button num = (Button)sender;
 
@@ -34,7 +36,7 @@ namespace CalculatorApp
                 }
                 else
                 {
-                    txtResult.Text = txtResult.Text + num.Text;
+                    txtResult.Text = txtResult.Text += num.Text;
                 }
             }
         }
@@ -50,6 +52,7 @@ namespace CalculatorApp
                 enterfirstvalue = Convert.ToDouble(txtResult.Text);
             }
             op = num.Text;
+            btnDisplay.Text = enterfirstvalue + " " + op + " ";
             txtResult.Text = "";
         }
 
@@ -68,6 +71,7 @@ namespace CalculatorApp
                 return;
             }
 
+            btnDisplay.Text = enterfirstvalue + " " + op + " " + entersecondvalue + " " + "=";
             switch (op)
             {
                 case "+":
@@ -92,7 +96,7 @@ namespace CalculatorApp
                     break;
 
                 case "Mod":
-                    txtResult.Text = (enterfirstvalue / entersecondvalue).ToString();
+                    txtResult.Text = (enterfirstvalue % entersecondvalue).ToString();
                     break;
 
                 case "Exp":
@@ -115,12 +119,14 @@ namespace CalculatorApp
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtResult.Text = "0";
+            btnDisplay.Text = "";
         }
 
         // this take care of CE butten (clear butten)
         private void btnClearEntry_Click(object sender, EventArgs e)
         {
             txtResult.Text = "0";
+            btnDisplay.Text = "";
             string f, s;
 
             f = Convert.ToString(enterfirstvalue);
@@ -131,7 +137,7 @@ namespace CalculatorApp
         }
 
 
-        // this should tate care of the +- sign
+        // this should take care of the +- sign
         private void PM_Click(object sender, EventArgs e)
         {
             double q = Convert.ToDouble(txtResult.Text);
@@ -157,7 +163,8 @@ namespace CalculatorApp
             this.Width = 320; //868
             txtResult.Width = 288;
         }
-
+           
+           // this take care of the scientific
         private void scientificToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Width = 630; //868
@@ -175,29 +182,32 @@ namespace CalculatorApp
             }
         }
         
-        private void btnPi_Click(object sender, EventArgs e)
-        {
-            txtResult.Text = "3.141592653589976323";
-        }
+        //private void btnPi_Click(object sender, EventArgs e)
+        //{
+        //    txtResult.Text = "3.141592653589976323";
+        //}
 
-        private void btnLog_Click(object sender, EventArgs e)
-        {
-            double logg = Convert.ToDouble(txtResult.Text);
-            logg = Math.Log10(logg);
-            txtResult.Text = Convert.ToString(logg);
-        }
+        //private void btnLog_Click(object sender, EventArgs e)
+        //{
+        //    double logg = Convert.ToDouble(txtResult.Text);
+        //    logg = Math.Log10(logg);
+        //    txtResult.Text = Convert.ToString(logg);
+        //}
 
-        private void btnSq_Click(object sender, EventArgs e)
-        {
-            double Sq = Convert.ToDouble(txtResult.Text);
-            Sq = Math.Sqrt(Sq);
-            txtResult.Text = Convert.ToString(Sq);
-        }
+        //private void btnSq_Click(object sender, EventArgs e)
+        //{
+        //    double Sq = Convert.ToDouble(txtResult.Text);
+        //    Sq = Math.Sqrt(Sq);
+        //    txtResult.Text = Convert.ToString(Sq);
+        //}
 
         private void btnx2_Click(object sender, EventArgs e)
         {
             double x;
             x = Convert.ToDouble(txtResult.Text) * Convert.ToDouble(txtResult.Text);
+            txtResult.Text = Convert.ToString(x);
+            //op = num.Text;
+            //btnDisplay.Text = enterfirstvalue + " " + op + " ";
             txtResult.Text = Convert.ToString(x);
         }
 
@@ -217,17 +227,21 @@ namespace CalculatorApp
        
         private void btnSinh_Click(object sender, EventArgs e)
         {
-            double Sh = Convert.ToDouble(txtResult.Text);
-            Sh = Math.Sinh(Sh);
-            txtResult.Text = Convert.ToString(Sh);
+            //double Sh = Convert.ToDouble(txtResult.Text);
+            //Sh = Math.Sinh(Sh);
+            //txtResult.Text = Convert.ToString(Sh);
+            double value = Convert.ToDouble(txtResult.Text);
+            txtResult.Text = Math.Sinh(value).ToString();
         }
 
         private void btnSin_Click(object sender, EventArgs e)
         {
 
-            double Sin = Convert.ToDouble(txtResult.Text);
-            Sin = Math.Sin(Sin);
-            txtResult.Text = Convert.ToString(Sin);
+            //double Sin = Convert.ToDouble(txtResult.Text);
+            //Sin = Math.Sin(Sin);
+            //txtResult.Text = Convert.ToString(Sin);
+            double value = Convert.ToDouble(txtResult.Text);
+            txtResult.Text = Math.Sin(value * Math.PI / 180).ToString();
         }
 
         private void btnDec_Click(object sender, EventArgs e)
@@ -249,9 +263,12 @@ namespace CalculatorApp
         private void btnCos_Click(object sender, EventArgs e)
         {
 
-            double Cos = Convert.ToDouble(txtResult.Text);
-            Cos = Math.Cos(Cos);
-            txtResult.Text = Convert.ToString(Cos);
+            //double Cos = Convert.ToDouble(txtResult.Text);
+            //Cos = Math.Cos(Cos);
+            //txtResult.Text = Convert.ToString(Cos);
+
+            double value = Convert.ToDouble(txtResult.Text);
+            txtResult.Text = Math.Cos(value * Math.PI / 180).ToString();
         }
 
         private void btnTanh_Click(object sender, EventArgs e)
@@ -265,9 +282,12 @@ namespace CalculatorApp
         private void btnTan_Click(object sender, EventArgs e)
         {
 
-            double Tan = Convert.ToDouble(txtResult.Text);
-            Tan = Math.Tan(Tan);
-            txtResult.Text = Convert.ToString(Tan);
+            //double Tan = Convert.ToDouble(txtResult.Text);
+            //Tan = Math.Tan(Tan);
+            //txtResult.Text = Convert.ToString(Tan);
+
+            double value = Convert.ToDouble(txtResult.Text);
+            txtResult.Text = Math.Tan(value * Math.PI / 180).ToString();
         }
 
         private void btn1x_Click(object sender, EventArgs e)
@@ -293,14 +313,19 @@ namespace CalculatorApp
 
         private void btnBin_Click(object sender, EventArgs e)
         {
-            int a = int.Parse(txtResult.Text);
-            txtResult.Text = Convert.ToString(a, 2);
+            //int a = int.Parse(txtResult.Text);
+            //txtResult.Text = Convert.ToString(a, 2);
+            int value = int.Parse(txtResult.Text);
+            txtResult.Text = Convert.ToString(value, 2);
         }
 
         private void btnHex_Click(object sender, EventArgs e)
         {
-            int a = int.Parse(txtResult.Text);
-            txtResult.Text = Convert.ToString(a, 16);
+            //int a = int.Parse(txtResult.Text);
+            //txtResult.Text = Convert.ToString(a, 16);
+
+            int value = int.Parse(txtResult.Text);
+            txtResult.Text = Convert.ToString(value, 16).ToUpper();
         }
 
         private void Oct_Click(object sender, EventArgs e)
@@ -309,6 +334,27 @@ namespace CalculatorApp
             txtResult.Text = Convert.ToString(a, 8);
         }
 
+        private void btnLog_Click_1(object sender, EventArgs e)
+        {
+            double logg = Convert.ToDouble(txtResult.Text);
+            logg = Math.Log10(logg);
+            txtResult.Text = Convert.ToString(logg);
+        }
+
+        private void btnPi_Click_1(object sender, EventArgs e)
+        {
+            txtResult.Text = "3.141592653589976323";
+        }
+
+        private void btnSq_Click_1(object sender, EventArgs e)
+        {
+            double Sq = Convert.ToDouble(txtResult.Text);
+            double SqResult = Math.Sqrt(Sq);
+            txtResult.Text = SqResult.ToString();
+         
+        }
+
+       
         private void Form1_Load_1(object sender, EventArgs e)
         {
             this.Width = 320; //868
